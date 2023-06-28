@@ -1,9 +1,15 @@
+## 2023-06-28 - Release 2.2.2
+Fork from https://github.com/rokerlabs/puppet-auditd
+To meet compatibility with stdlib > 9
+Tested on recent Ubuntu LTS 22.04
+Published to Forge under Veepshosting but all credit to original authors kemra102 and the more standard compliant fork by rokerlabs
+
 ## 2016-12-29 - Release 2.2.0
 ### Summary
 Small feature release.
 
 #### Features
-- Merge [Pull #21](https://github.com/kemra102/puppet-auditd/pull/21): Added support for `write_logs` option for `auditd` versions `>= 2.5.2`. 
+- Merge [Pull #21](https://github.com/kemra102/puppet-auditd/pull/21): Added support for `write_logs` option for `auditd` versions `>= 2.5.2`.
 
 ## 2016-11-25 - Release 2.1.0
 ### Summary

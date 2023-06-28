@@ -1,7 +1,7 @@
 {
-  "name": "kemra102-auditd",
-  "version": "2.2.0",
-  "author": "Danny Roberts",
+  "name": "veepshosting-auditd",
+  "version": "2.2.2",
+  "author": "Grant Davies",
   "summary": "Manage the audit daemon and it's rules.",
   "license": "BSD-2-Clause",
   "source": "https://github.com/kemra102/puppet-auditd",
@@ -11,7 +11,7 @@
   "operatingsystem_support": [
     {
     "operatingsystem": "RedHat",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+    "operatingsystemrelease": [ "7" ]
     },
     {
     "operatingsystem": "SLES",
@@ -19,15 +19,15 @@
     },
     {
     "operatingsystem": "CentOS",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+    "operatingsystemrelease": [ "7" ]
     },
     {
     "operatingsystem": "Scientific",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+    "operatingsystemrelease": [ "7" ]
     },
     {
     "operatingsystem": "OracleLinux",
-    "operatingsystemrelease": [ "5", "6", "7" ]
+    "operatingsystemrelease": [ "7" ]
     },
     {
     "operatingsystem": "Amazon"
@@ -38,11 +38,11 @@
     },
     {
     "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "12.04", "14.04", "16.04" ]
+    "operatingsystemrelease": [ "20.04", "22.04" ]
     },
     {
     "operatingsystem": "Debian",
-    "operatingsystemrelease": [ "7", "8" ]
+    "operatingsystemrelease": [ "8" ]
     },
     {
     "operatingsystem": "Archlinux"
@@ -58,7 +58,7 @@
     }
   ],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 4.6.0 < 5.0.0"},
+    {"name":"puppetlabs-stdlib","version_requirement":"> 9.0.0 < 99.99.99"},
     {"name":"puppetlabs-concat","version_requirement":">= 1.1.0 < 3.0.0"}
   ]
 }
