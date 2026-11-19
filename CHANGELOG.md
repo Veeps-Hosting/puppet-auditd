@@ -1,3 +1,8 @@
+## 2026-11-19 - Release 2.3.0
+Replace legacy facts ($::osfamily, $::operatingsystem, $::operatingsystemrelease, $::hostname) with the structured $facts hash, so the module compiles with legacy facts disabled (Puppet/OpenVox 8 default).
+Debian family: always use incremental_async flush and systemctl, since every supported release is systemd-based.
+Widen the puppetlabs-concat bound to < 11.0.0.
+
 ## 2023-06-28 - Release 2.2.2
 Fork from https://github.com/rokerlabs/puppet-auditd
 To meet compatibility with stdlib > 9

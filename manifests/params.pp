@@ -1,51 +1,21 @@
 class auditd::params {
 
   # OS specific variables.
-  case $::osfamily {
+  case "${facts['os']['family']}" {
     'Debian': {
       $package_name       = 'auditd'
       $audisp_package     = 'audispd-plugins'
       $manage_audit_files = false
       $rules_file         = '/etc/audit/rules.d/audit.rules'
-
-      case $::operatingsystem {
-        'Ubuntu': {
-          if versioncmp($::operatingsystemrelease, '18.04') >= 0 {
-            $flush = 'incremental_async'
-          } else {
-            $flush = 'incremental'
-          }
-
-          if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
-            $service_restart = '/bin/systemctl restart auditd'
-            $service_stop    = '/bin/systemctl stop auditd'
-          } else {
-            $service_restart = '/etc/init.d/auditd restart'
-            $service_stop    = '/etc/init.d/auditd stop'
-          }
-        }
-        default: {
-          if versioncmp($::operatingsystemrelease, '10') >= 0 {
-            $flush = 'incremental_async'
-          } else {
-            $flush = 'incremental'
-          }
-
-          if versioncmp($::operatingsystemrelease, '8') >= 0 {
-            $service_restart = '/bin/systemctl restart auditd'
-            $service_stop    = '/bin/systemctl stop auditd'
-          } else {
-            $service_restart = '/etc/init.d/auditd restart'
-            $service_stop    = '/etc/init.d/auditd stop'
-          }
-        }
-      }
+      $flush              = 'incremental_async'
+      $service_restart    = '/bin/systemctl restart auditd'
+      $service_stop       = '/bin/systemctl stop auditd'
     }
     'Suse': {
       $package_name = 'audit'
       $flush        = 'incremental'
 
-      if versioncmp($::operatingsystemrelease, '12') >= 0 and $::operatingsystem == 'SLES' {
+      if versioncmp("${facts['os']['release']['full']}", '12') >= 0 and "${facts['os']['id']}" == 'SLES' {
         $audisp_package     = 'audit-audispd-plugins'
         $manage_audit_files = true
         $rules_file         = '/etc/audit/rules.d/puppet.rules'
@@ -65,7 +35,7 @@ class auditd::params {
       $audisp_package     = 'audispd-plugins'
       $manage_audit_files = true
 
-      if $::operatingsystem != 'Amazon' and versioncmp($::operatingsystemrelease, '7') >= 0 {
+      if "${facts['os']['id']}" != 'Amazon' and versioncmp("${facts['os']['release']['full']}", '7') >= 0 {
         $flush           = 'incremental_async'
         $rules_file      = '/etc/audit/rules.d/puppet.rules'
         $service_restart = '/usr/libexec/initscripts/legacy-actions/auditd/restart'
@@ -96,7 +66,7 @@ class auditd::params {
       $service_stop       = '/etc/init.d/auditd stop'
     }
     default: {
-      fail("${::osfamily} is not supported by auditd")
+      fail("${facts['os']['name']} is not supported by auditd")
     }
   }
 
@@ -111,7 +81,7 @@ class auditd::params {
   $disp_qos                = 'lossy'
   $dispatcher              = '/sbin/audispd'
   $name_format             = 'none'
-  $admin                   = $::hostname
+  $admin                   = "${facts['networking']['hostname']}"
   $max_log_file            = 6
   $max_log_file_action     = 'rotate'
   $space_left              = 75
